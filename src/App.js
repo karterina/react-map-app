@@ -2,16 +2,22 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Map from './Map.js';
+import LocationsMenu from './LocationsMenu.js'
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <p>Museums of Saint-Petersburg, Russia</p>
         </header>
+        <LocationsMenu />
         <Map />
+        <footer className='footer'>
+          <div className='footerInfo'>
+            <p>This app is build with GoogleMapsAPI and ForsquareAPI</p>
+          </div>
+        </footer>
       </div>
     );
   }
