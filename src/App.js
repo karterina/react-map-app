@@ -3,8 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 import Map from './Map.js';
 import LocationsMenu from './LocationsMenu.js'
+import * as MapAPI from './MapAPI.js'
 
 class App extends React.Component {
+  state ={
+    allLocations: []
+  }
+
+  componentDidMount() {
+    MapAPI.getAllLocations().then((locations) => {
+      this.setState({allLocations: locations})
+    }).catch((error) => {
+      console.log('Something went wrong', error);
+    })
+  }
+
+
+
   render() {
     return (
       <div className="App">
