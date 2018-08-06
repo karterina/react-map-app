@@ -66,6 +66,27 @@ input {
   padding: 15px;
 }
 
+.locationsContainer li:hover {
+  cursor: pointer;
+  background-color: dimgray;
+}
+
+button.open-menu {
+  border: none;
+  background-color: #222;
+  color: white;
+  float:left;
+  width: 50px;
+  height: 40px;
+  font-size: 1em;
+}
+
+button.open-menu:hover {
+  cursor: pointer;
+  background-color: dimgray;
+}
+
+
 @media screen and (min-width: 800px) {
   .locationsMenu {
     position: relative;

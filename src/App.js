@@ -25,6 +25,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
+          <button className='open-menu' aria-label='open menu'>☰</button>
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
         <LocationsMenu allLocations={this.state.allLocations}/>
