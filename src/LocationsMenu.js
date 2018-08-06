@@ -5,7 +5,18 @@ class LocationsMenu extends React.Component {
     return (
       <nav>
         <div className='locationsMenu'>
-          <p>The locations menu</p>
+          <div className='filterBarContainer'>
+            <input type='text' placeholder='Filter locations' />
+          </div>
+          <div className='locationsContainer'>
+            <ul>
+              {this.props.allLocations.map(location => (
+                <li key={location.id}>
+                  {location.name}, {location.location.address}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </nav>
     )

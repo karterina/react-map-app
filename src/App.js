@@ -11,6 +11,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    // get initial locations when component mounts
     MapAPI.getAllLocations().then((locations) => {
       this.setState({allLocations: locations})
     }).catch((error) => {
@@ -26,7 +27,7 @@ class App extends React.Component {
         <header className="App-header">
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
-        <LocationsMenu />
+        <LocationsMenu allLocations={this.state.allLocations}/>
         <Map />
         <footer className='footer'>
           <div className='footerInfo'>
