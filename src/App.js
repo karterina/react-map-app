@@ -19,13 +19,17 @@ class App extends React.Component {
     })
   }
 
+  toggleMenu = (event) => {
+    let navContainer = document.querySelector('.locationsMenu');
+    navContainer.classList.toggle('show')
+  }
 
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <button className='open-menu' aria-label='open menu'>☰</button>
+          <button onClick={(event) => this.toggleMenu()} className='toggle-menu' aria-label='open menu'>☰</button>
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
         <LocationsMenu allLocations={this.state.allLocations}/>
