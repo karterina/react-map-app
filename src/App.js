@@ -8,7 +8,9 @@ import * as MapAPI from './MapAPI.js'
 class App extends React.Component {
   state ={
     allLocations: [],
-    selectedLocation: []
+    selectedLocation: [],
+    center: {lat: 59.9342802, lng: 30.3350986},
+    zoom: 12
   }
 
   componentDidMount() {
@@ -25,9 +27,13 @@ class App extends React.Component {
     navContainer.classList.toggle('show')
   }
 
+
   selectLocation = (location) => {
-      this.setState({selectedLocation: location})
+      this.setState({selectedLocation: location});
+      this.setState({center: {lat: location.location.lat, lng: location.location.lng}});
+      this.setState({zoom: 15})
   }
+
 
   render() {
     return (
@@ -36,8 +42,8 @@ class App extends React.Component {
           <button onClick={(event) => this.toggleMenu()} className='toggle-menu' aria-label='open menu'>☰</button>
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
-        <LocationsMenu allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
-        <Map allLocations={this.state.allLocations}/>
+        <LocationsMenu resetLocationStyle={this.resetLocationStyle} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
+        <Map zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations}/>
         <footer className='footer'>
           <div className='footerInfo'>
             <p>This app is build with GoogleMapsAPI and ForsquareAPI</p>

@@ -77,6 +77,10 @@ input {
   background-color: dimgray;
 }
 
+li.selected {
+  background-color: dimgray;
+}
+
 button.toggle-menu {
   border: none;
   background-color: #222;
