@@ -33,7 +33,7 @@ class App extends React.Component {
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
         <LocationsMenu allLocations={this.state.allLocations}/>
-        <Map />
+        <Map allLocations={this.state.allLocations}/>
         <footer className='footer'>
           <div className='footerInfo'>
             <p>This app is build with GoogleMapsAPI and ForsquareAPI</p>
