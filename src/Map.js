@@ -8,6 +8,7 @@ class Map extends Component {
   }
 
 
+
   render() {
 
     // from https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb
@@ -16,13 +17,8 @@ class Map extends Component {
         center = {this.props.center}
         zoom = {this.props.zoom}
       >
-        {this.props.allLocations.map(location =>
-          (
-            <Marker
-              key={location.id}
-              position={{lat: location.location.lat, lng: location.location.lng}}
-            />
-          ))}
+        {this.props.allLocations.map((location) =>
+          (location.id === this.props.selectedLocation.id ? <Marker animation={1} key={location.id} position={{lat: location.location.lat, lng: location.location.lng}}/> : <Marker key={location.id} position={{lat: location.location.lat, lng: location.location.lng}}/>))}
       </GoogleMap>
     ));
 

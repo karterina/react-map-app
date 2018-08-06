@@ -10,7 +10,9 @@ class App extends React.Component {
     allLocations: [],
     selectedLocation: [],
     center: {lat: 59.9342802, lng: 30.3350986},
-    zoom: 12
+    zoom: 12,
+    markerAnimation: 2,
+    markers: []
   }
 
   componentDidMount() {
@@ -19,7 +21,8 @@ class App extends React.Component {
       this.setState({allLocations: locations})
     }).catch((error) => {
       console.log('Something went wrong', error);
-    })
+    });
+
   }
 
   toggleMenu = () => {
@@ -31,7 +34,8 @@ class App extends React.Component {
   selectLocation = (location) => {
       this.setState({selectedLocation: location});
       this.setState({center: {lat: location.location.lat, lng: location.location.lng}});
-      this.setState({zoom: 15})
+      this.setState({zoom: 15}),
+      this.setState({markerAnimation: 1})
   }
 
 
@@ -43,7 +47,7 @@ class App extends React.Component {
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
         <LocationsMenu resetLocationStyle={this.resetLocationStyle} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
-        <Map zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations}/>
+        <Map animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations}/>
         <footer className='footer'>
           <div className='footerInfo'>
             <p>This app is build with GoogleMapsAPI and ForsquareAPI</p>
