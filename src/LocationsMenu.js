@@ -11,7 +11,7 @@ class LocationsMenu extends React.Component {
           <div className='locationsContainer'>
             <ul>
               {this.props.allLocations.map(location => (
-                <li key={location.id}>
+                <li key={location.id} onClick={(event) => this.props.selectLocation(location)}>
                   {location.name}, {location.location.address}
                 </li>
               ))}

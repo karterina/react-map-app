@@ -7,7 +7,8 @@ import * as MapAPI from './MapAPI.js'
 
 class App extends React.Component {
   state ={
-    allLocations: []
+    allLocations: [],
+    selectedLocation: []
   }
 
   componentDidMount() {
@@ -19,11 +20,14 @@ class App extends React.Component {
     })
   }
 
-  toggleMenu = (event) => {
+  toggleMenu = () => {
     let navContainer = document.querySelector('.locationsMenu');
     navContainer.classList.toggle('show')
   }
 
+  selectLocation = (location) => {
+      this.setState({selectedLocation: location})
+  }
 
   render() {
     return (
@@ -32,7 +36,7 @@ class App extends React.Component {
           <button onClick={(event) => this.toggleMenu()} className='toggle-menu' aria-label='open menu'>☰</button>
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
-        <LocationsMenu allLocations={this.state.allLocations}/>
+        <LocationsMenu allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
         <Map allLocations={this.state.allLocations}/>
         <footer className='footer'>
           <div className='footerInfo'>

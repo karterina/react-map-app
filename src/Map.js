@@ -7,6 +7,7 @@ class Map extends Component {
     markers: []
   }
 
+
   render() {
 
     // from https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb
@@ -16,18 +17,14 @@ class Map extends Component {
         defaultZoom = { 12 }
       >
         {this.props.allLocations.map(location =>
-          (<Marker
+          (
+            <Marker
               key={location.id}
               position={{lat: location.location.lat, lng: location.location.lng}}
             />
           ))}
       </GoogleMap>
     ));
-
-    {/*const markers = this.props.allLocations.map(location =>
-      <Marker key={location.id}
-              position={{lat: this.location.location.lat, lng: this.location.location.lng}}
-      />)*/}
 
     return (
       <div>
