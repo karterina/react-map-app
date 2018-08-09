@@ -12,7 +12,8 @@ class App extends React.Component {
     selectedLocation: [],
     center: {lat: 59.9342802, lng: 30.3350986},
     zoom: 12,
-    marker: []
+    marker: [],
+    showBox: false
   }
 
   componentDidMount() {
@@ -34,7 +35,8 @@ class App extends React.Component {
   selectLocation = (location) => {
       this.setState({selectedLocation: location});
       this.setState({center: {lat: location.location.lat, lng: location.location.lng}});
-      this.setState({zoom: 15})
+      this.setState({zoom: 15});
+      this.setState({showBox: true})
 
   }
 
@@ -47,7 +49,7 @@ class App extends React.Component {
           <p>Museums of Saint-Petersburg, Russia</p>
         </header>
         <LocationsMenu allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
-        <Map selectLocation={this.selectLocation} animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations} />
+        <Map showBox={this.state.showBox} selectLocation={this.selectLocation} animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations} />
         <footer className='footer'>
           <div className='footerInfo'>
             <p>This app is build with GoogleMapsAPI and ForsquareAPI</p>

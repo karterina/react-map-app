@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Marker } from "react-google-maps"
+import { Marker } from "react-google-maps";
+import LocationInfoBox from './LocationInfoBox.js'
 
 class Markers extends Component {
   render() {
@@ -10,7 +11,9 @@ class Markers extends Component {
           id={this.props.location.id}
           title={this.props.location.name}
           position={{lat: this.props.location.location.lat, lng: this.props.location.location.lng}}
-      />
+      >
+        {this.props.showBox === true && this.props.location === this.props.selectedLocation && <LocationInfoBox location={this.props.location} />}
+      </Marker>
     )
   }
 }

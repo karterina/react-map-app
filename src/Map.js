@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, InfoWindow } from 'react-google-maps';
 import Markers from './Markers.js'
 
 
@@ -20,9 +20,10 @@ class Map extends Component {
       >
         {this.props.allLocations.map(location => (
           location.id === this.props.selectedLocation.id ?
-            <Markers selectLocation={this.props.selectLocation} animation={1} location={location} key={location.id} /> : <Markers selectLocation={this.props.selectLocation} animation={2} location={location} key={location.id} />
+            <Markers selectedLocation={this.props.selectedLocation} showBox={this.props.showBox} selectLocation={this.props.selectLocation} animation={1} location={location} key={location.id} /> : <Markers selectedLocation={this.props.selectedLocation} showBox={this.props.showBox} selectLocation={this.props.selectLocation} animation={2} location={location} key={location.id} />
 
         ))}
+
       </GoogleMap>
     ));
 
