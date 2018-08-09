@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap } from 'react-google-maps';
+import Markers from './Markers.js'
+
 
 class Map extends Component {
 
   state = {
     markers: []
   }
-
 
 
   render() {
@@ -17,8 +18,11 @@ class Map extends Component {
         center = {this.props.center}
         zoom = {this.props.zoom}
       >
-        {this.props.allLocations.map((location) =>
-          (location.id === this.props.selectedLocation.id ? <Marker animation={1} key={location.id} position={{lat: location.location.lat, lng: location.location.lng}}/> : <Marker key={location.id} position={{lat: location.location.lat, lng: location.location.lng}}/>))}
+        {this.props.allLocations.map(location => (
+          location.id === this.props.selectedLocation.id ?
+            <Markers selectLocation={this.props.selectLocation} animation={1} location={location} key={location.id} /> : <Markers selectLocation={this.props.selectLocation} animation={2} location={location} key={location.id} />
+
+        ))}
       </GoogleMap>
     ));
 
@@ -27,7 +31,6 @@ class Map extends Component {
         <TheMap
           containerElement={<div style={{height:'650px', width:'100%'}} />}
           mapElement={ <div style={{height:'100%'}} />}>
-
         </TheMap>
 
       </div>
