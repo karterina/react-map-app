@@ -30,6 +30,7 @@ class App extends React.Component {
     });
   }
 
+
   filterLocations = () => {
     let filtered;
     if (this.state.category !== 'None') {
@@ -49,7 +50,7 @@ class App extends React.Component {
 
   handleCategoryFilter = (event) => {
     this.changeCategory(event);
-    setTimeout(() => (this.filterLocations()), 1000)
+    setTimeout(() => (this.filterLocations()), 10)
   }
 
 

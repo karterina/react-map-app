@@ -12,8 +12,17 @@ class LocationsMenu extends React.Component {
               <select onChange={event => (this.props.handleCategoryFilter(event))} id='museum-category'>
                 <option>None</option>
                 <option>Art Museum</option>
+                <option>Art Gallery</option>
+                <option>Arcade</option>
+                <option>Boutique</option>
+                <option>Candy Store</option>
+                <option>Cruise</option>
+                <option>Coffee Shop</option>
+                <option>College History Building</option>
+                <option>Gift Shop</option>
                 <option>History Museum</option>
-                <option>Science Museum</option>
+                <option>Internet Cafe</option>
+                <option>Museum</option>
               </select>
             </label>
           </div>
