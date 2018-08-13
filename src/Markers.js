@@ -12,7 +12,7 @@ class Markers extends Component {
           title={this.props.location.name}
           position={{lat: this.props.location.location.lat, lng: this.props.location.location.lng}}
       >
-        {this.props.showBox === true && this.props.location === this.props.selectedLocation && <LocationInfoBox location={this.props.location} />}
+        {this.props.location === this.props.selectedLocation && <LocationInfoBox locationsInfo={this.props.locationsInfo} location={this.props.location} />}
       </Marker>
     )
   }
