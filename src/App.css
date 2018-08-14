@@ -1,10 +1,12 @@
-html, body, .root, .App {
+body, .root, .App {
   width: 100%;
   height: 100%;
 }
 
 .App > div {
-  height: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .App {
@@ -14,16 +16,21 @@ html, body, .root, .App {
 
 .App-header {
   background-color: #222;
-  width: 100%;
   height: 20%;
   color: white;
   padding: 10px;
+  padding-right: 0;
+  margin: auto;
   font-size: 1.5em;
 }
 
 .App-header p {
   display: block;
   margin: 5px;
+}
+
+nav {
+  height: 100%;
 }
 
 .locationsMenu {
@@ -47,22 +54,33 @@ html, body, .root, .App {
   width: 100%;
   background-color: #222;
   color: white;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 .footerInfo {
   display: block;
   font-size: 10pt;
-
 }
 
 select {
-  width: 100%;
-  height: 30px;
+  width: 90%;
+  height: 40px;
   margin-top: 5px;
 }
+
 #select-label {
   display: block;
   color: white;
+}
+
+#reset-button {
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 .locationsContainer ul {
@@ -70,7 +88,10 @@ select {
   text-align: left;
   padding-left: 15px;
   padding-right: 5px;
+  position: fixed;
+
 }
+
 
 .locationsContainer li {
   display: block;
@@ -83,9 +104,10 @@ select {
   background-color: dimgray;
 }
 
-li.selected {
+.locationsContainer li:focus {
   background-color: dimgray;
 }
+
 
 button.toggle-menu {
   border: none;
@@ -100,4 +122,9 @@ button.toggle-menu {
 button.toggle-menu:hover {
   cursor: pointer;
   background-color: dimgray;
+}
+
+.info-header {
+  font-weight: bold;
+
 }

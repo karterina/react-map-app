@@ -15,11 +15,15 @@ class LocationInfoBox extends Component {
          defaultPosition={new google.maps.LatLng(this.props.location.location.lat, this.props.location.location.lng)}
          options={{ closeBoxURL: ``, enableEventPropagation: true }}
        >
-         <div style={{ backgroundColor: `white`, padding: `12px` }}>
+         <div style={{ backgroundColor: `white`, padding: `12px`, minWidth: `200px`, maxWidth: `400px`, border: `3px solid black` }}>
            <div style={{ fontSize: `16px`, fontColor: `black` }}>
-             Name: {this.props.location.name}
+             <span className='info-name info-header'>Name:</span> {this.props.location.name}
              <hr/>
-             Address: {this.props.location.location.address}
+             <span className='info-address info-header'>Address:</span> {this.props.location.location.address ? this.props.location.location.address : 'not available' }
+             <hr/>
+             <span className='info-phone info-header'>Phone number:</span> {this.props.locationsInfo.contact && this.props.locationsInfo.contact.formattedPhone ? this.props.locationsInfo.contact.formattedPhone : 'not available'}
+             <hr/>
+             <span className='info-website info-header'>Website:</span> {this.props.locationsInfo.url ? <a target='_blank' href={this.props.locationsInfo.url}>{this.props.location.name}</a> : 'not available'}
            </div>
          </div>
        </InfoBox>

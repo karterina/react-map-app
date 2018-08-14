@@ -12,9 +12,7 @@ class App extends React.Component {
     selectedLocation: [],
     center: {lat: 59.9342802, lng: 30.3350986},
     zoom: 12,
-    marker: [],
     locationsInfo: [],
-    locationsPhotos: [],
     category: 'None',
     filteredLocations: []
   }
@@ -28,8 +26,16 @@ class App extends React.Component {
       alert('Sorry, something went wrong while fetching locations. Try again later!');
       console.log('Something went wrong while fetching locations', error);
     });
+
   }
 
+  resetMap = () => {
+    this.setState({selectedLocation: []});
+    this.setState({center: {lat: 59.9342802, lng: 30.3350986}});
+    this.setState({zoom: 12});
+    this.setState({category: 'None'});
+    this.setState({filteredLocations: this.state.allLocations});
+  }
 
   filterLocations = () => {
     let filtered;
@@ -59,12 +65,23 @@ class App extends React.Component {
     navContainer.classList.toggle('show')
   }
 
+  getLocationInfo = (location) => {
+    MapAPI.getLocationsInfo(location).then(info => {
+      this.setState({locationsInfo: info})
+    }).catch(error => {
+      alert('Sorry, something went wrong while fetching locations information. Try again later!');
+      console.log('Something went wrong while fetching locations information', error);
+    })
+  }
+
 
   selectLocation = (location) => {
       this.setState({selectedLocation: location});
       this.setState({center: {lat: location.location.lat, lng: location.location.lng}});
       this.setState({zoom: 15});
       this.setState({showBox: true});
+      this.getLocationInfo(location);
+
   }
 
 
@@ -74,9 +91,9 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <button onClick={(event) => this.toggleMenu()} className='toggle-menu' aria-label='open menu'>☰</button>
-          <p>Museums of Saint-Petersburg, Russia</p>
+          <p>Places of Saint-Petersburg, Russia</p>
         </header>
-        <LocationsMenu filteredLocations={this.state.filteredLocations} handleCategoryFilter={this.handleCategoryFilter} filterLocations={this.filterLocations} changeCategory={this.changeCategory} category={this.state.category} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
+        <LocationsMenu resetMap={this.resetMap} filteredLocations={this.state.filteredLocations} handleCategoryFilter={this.handleCategoryFilter} filterLocations={this.filterLocations} changeCategory={this.changeCategory} category={this.state.category} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
         <Map filteredLocations={this.state.filteredLocations} locationsInfo={this.state.locationsInfo} showBox={this.state.showBox} selectLocation={this.selectLocation} animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations} />
         <footer className='footer'>
           <div className='footerInfo'>
