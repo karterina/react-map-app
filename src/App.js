@@ -91,7 +91,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <button onClick={(event) => this.toggleMenu()} className='toggle-menu' aria-label='open menu'>☰</button>
-          <p>Places of Saint-Petersburg, Russia</p>
+          <p aria-label='name of the app'>Places of Saint-Petersburg, Russia</p>
         </header>
         <LocationsMenu resetMap={this.resetMap} filteredLocations={this.state.filteredLocations} handleCategoryFilter={this.handleCategoryFilter} filterLocations={this.filterLocations} changeCategory={this.changeCategory} category={this.state.category} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
         <Map filteredLocations={this.state.filteredLocations} locationsInfo={this.state.locationsInfo} showBox={this.state.showBox} selectLocation={this.selectLocation} animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations} />

@@ -9,7 +9,7 @@ class LocationsMenu extends React.Component {
         <div className='locationsMenu'>
           <div className='filterBarContainer'>
             <label id='select-label'>Choose a category:
-              <select onChange={event => (this.props.handleCategoryFilter(event))} id='museum-category' value={this.props.category}>
+              <select name='select a category' onChange={event => (this.props.handleCategoryFilter(event))} id='museum-category' value={this.props.category}>
                 <option>None</option>
                 <option>Art Museum</option>
                 <option>Art Gallery</option>
@@ -25,16 +25,17 @@ class LocationsMenu extends React.Component {
                 <option>Museum</option>
               </select>
             </label>
-            <button onClick={event => (this.props.resetMap())} id='reset-button'>Reset</button>
+            <button onClick={event => (this.props.resetMap())} id='reset-button' aria-label='reset map to default'>Reset</button>
           </div>
           <hr/>
           <div className='locationsContainer'>
-            <ul>
+            <ul aria-label='list of locations'>
               {this.props.filteredLocations.map(location => (
                 <li id={`a${location.id}`}
                     key={location.id}
                     className={location.categories.id}
                     onClick={(event) => this.props.selectLocation(location)}
+                    onKeyPress={(event) => this.props.selectLocation(location)}
                     tabIndex='0'
                 >
                   {location.name}, {location.location.address}

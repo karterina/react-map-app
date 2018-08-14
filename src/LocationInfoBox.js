@@ -15,7 +15,7 @@ class LocationInfoBox extends Component {
          defaultPosition={new google.maps.LatLng(this.props.location.location.lat, this.props.location.location.lng)}
          options={{ closeBoxURL: ``, enableEventPropagation: true }}
        >
-         <div style={{ backgroundColor: `white`, padding: `12px`, minWidth: `200px`, maxWidth: `400px`, border: `3px solid black` }}>
+         <div tabIndex='0' aria-label='information about location' style={{ backgroundColor: `white`, padding: `12px`, minWidth: `200px`, maxWidth: `400px`, border: `3px solid black` }}>
            <div style={{ fontSize: `16px`, fontColor: `black` }}>
              <span className='info-name info-header'>Name:</span> {this.props.location.name}
              <hr/>

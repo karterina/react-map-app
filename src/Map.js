@@ -5,11 +5,6 @@ import Markers from './Markers.js'
 
 class Map extends Component {
 
-  state = {
-    markers: []
-  }
-
-
   render() {
 
     // from https://medium.com/@yelstin.fernandes/render-a-map-component-using-react-google-maps-5f7fb3e418bb
