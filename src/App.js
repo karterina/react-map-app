@@ -7,6 +7,7 @@ import * as MapAPI from './MapAPI.js'
 import Markers from './Markers.js'
 
 class App extends React.Component {
+
   state = {
     allLocations: [],
     selectedLocation: [],
@@ -23,12 +24,13 @@ class App extends React.Component {
       this.setState({allLocations: locations});
       this.setState({filteredLocations: locations})
     }).catch((error) => {
+      // alert the user if something goes wrong
       alert('Sorry, something went wrong while fetching locations. Try again later!');
       console.log('Something went wrong while fetching locations', error);
     });
-
   }
 
+  // reset map to default when the reset button is pressed
   resetMap = () => {
     this.setState({selectedLocation: []});
     this.setState({center: {lat: 59.9342802, lng: 30.3350986}});
@@ -37,6 +39,7 @@ class App extends React.Component {
     this.setState({filteredLocations: this.state.allLocations});
   }
 
+  // filter locations based on the chosen category
   filterLocations = () => {
     let filtered;
     if (this.state.category !== 'None') {
@@ -46,25 +49,27 @@ class App extends React.Component {
     } else {
       filtered = this.state.allLocations;
     }
-    console.log(filtered);
     this.setState({filteredLocations: filtered})
   }
 
+  // updating category state on select
   changeCategory = (event) => {
     this.setState({category: event.target.value})
   }
 
+  // call previous two functions to pass to onChange event of the select
   handleCategoryFilter = (event) => {
     this.changeCategory(event);
     setTimeout(() => (this.filterLocations()), 10)
   }
 
-
+  // show/hide locatons menu
   toggleMenu = () => {
     let navContainer = document.querySelector('.locationsMenu');
     navContainer.classList.toggle('show')
   }
 
+  // get information about a location using forsquare api
   getLocationInfo = (location) => {
     MapAPI.getLocationsInfo(location).then(info => {
       this.setState({locationsInfo: info})
@@ -74,7 +79,7 @@ class App extends React.Component {
     })
   }
 
-
+  // selecting a location
   selectLocation = (location) => {
       this.setState({selectedLocation: location});
       this.setState({center: {lat: location.location.lat, lng: location.location.lng}});
@@ -91,15 +96,13 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
           <button onClick={(event) => this.toggleMenu()} className='toggle-menu' aria-label='open menu'>☰</button>
-          <p aria-label='name of the app'>Places of Saint-Petersburg, Russia</p>
+          <div className='header-info'>
+            <p className='app-name' aria-label='name of the app'>Places of Saint-Petersburg, Russia</p>
+            <p className='api-info'>Built with Google Maps API and Foursquare API</p>
+          </div>
         </header>
         <LocationsMenu resetMap={this.resetMap} filteredLocations={this.state.filteredLocations} handleCategoryFilter={this.handleCategoryFilter} filterLocations={this.filterLocations} changeCategory={this.changeCategory} category={this.state.category} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
         <Map filteredLocations={this.state.filteredLocations} locationsInfo={this.state.locationsInfo} showBox={this.state.showBox} selectLocation={this.selectLocation} animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations} />
-        <footer className='footer'>
-          <div className='footerInfo'>
-            <p>This app is build with GoogleMapsAPI and ForsquareAPI</p>
-          </div>
-        </footer>
       </div>
     );
   }

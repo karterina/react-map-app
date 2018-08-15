@@ -22,12 +22,14 @@ class Map extends Component {
       </GoogleMap>
     ));
 
+
     const mapHeight = window.innerHeight - 87
+
     return (
 
       <div>
         <TheMap
-          containerElement={<div className='map-container' style={{height:`${mapHeight}px`, width:'100%'}} />}
+          containerElement={<div className='map-container' style={{height:'90vh', width:'100%'}} />}
           mapElement={ <div style={{height:'100%'}} />}>
         </TheMap>
 

@@ -30,6 +30,7 @@ class LocationsMenu extends React.Component {
           <hr/>
           <div className='locationsContainer'>
             <ul aria-label='list of locations'>
+              {/* mapping through locations and creating li elements to display them */}
               {this.props.filteredLocations.map(location => (
                 <li id={`a${location.id}`}
                     key={location.id}

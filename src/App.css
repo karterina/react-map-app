@@ -3,11 +3,6 @@ body, .root, .App {
   height: 100%;
 }
 
-.App > div {
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
 
 .App {
   text-align: center;
@@ -16,17 +11,26 @@ body, .root, .App {
 
 .App-header {
   background-color: #222;
-  height: 20%;
+  height: 7vh;
   color: white;
   padding: 10px;
   padding-right: 0;
   margin: auto;
   font-size: 1.5em;
+  min-height: 48.5px;
 }
 
 .App-header p {
   display: block;
   margin: 5px;
+}
+
+.header-info {
+  height: 100%;
+}
+.api-info {
+  font-size: 10pt;
+  color: dimgray;
 }
 
 nav {
@@ -36,12 +40,14 @@ nav {
 .locationsMenu {
   float: left;
   width: 300px;
-  height: 100%;
+  height: 90vh;
   background-color: #222;
   position: absolute;
   transform: translate(-300px, 0);
   transition: transform 0.3s ease;
+  overflow-y: scroll;
 }
+
 
 .locationsMenu.show {
   position: relative;
@@ -49,21 +55,6 @@ nav {
 }
 
 
-.footer {
-  height: 30px;
-  width: 100%;
-  background-color: #222;
-  color: white;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.footerInfo {
-  display: block;
-  font-size: 10pt;
-}
 
 select {
   width: 90%;
@@ -88,7 +79,7 @@ select {
   text-align: left;
   padding-left: 15px;
   padding-right: 5px;
-  position: fixed;
+
 
 }
 
@@ -126,5 +117,12 @@ button.toggle-menu:hover {
 
 .info-header {
   font-weight: bold;
+
+}
+
+@media screen and (max-width: 650px)  {
+  .app-name {
+    font-size: 0.7em;
+  }
 
 }
