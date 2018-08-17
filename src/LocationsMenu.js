@@ -28,18 +28,18 @@ class LocationsMenu extends React.Component {
             </div>
             <hr/>
             <div className='locationsContainer'>
-              {this.props.gotLocations ? <ul aria-label='list of locations'>
-                                              {this.props.filteredLocations.map(location => (
-                                                  <li id={`a${location.id}`}
-                                                      key={location.id}
-                                                      className={location.categories.id}
-                                                      onClick={(event) => this.props.selectLocation(location)}
-                                                      onKeyPress={(event) => this.props.selectLocation(location)}
-                                                      tabIndex='0'
-                                                  >
-                                                    {location.name}, {location.location.address}
-                                                  </li>))}
-                                            </ul> : <p>Something went wrong</p>}
+              {this.props.allLocations !== undefined ? <ul aria-label='list of locations'>
+                                                        {this.props.filteredLocations.map(location => (
+                                                            <li id={`a${location.id}`}
+                                                                key={location.id}
+                                                                className={location.categories.id}
+                                                                onClick={(event) => this.props.selectLocation(location)}
+                                                                onKeyPress={(event) => this.props.selectLocation(location)}
+                                                                tabIndex='0'
+                                                            >
+                                                              {location.name}, {location.location.address}
+                                                            </li>))}
+                                                      </ul> : (<p className='error'>Sorry, something went wrong while fetching locations. Check console for more info or try again later.</p>)}
 
             </div>
           </div>

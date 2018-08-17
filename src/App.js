@@ -7,6 +7,7 @@ import * as MapAPI from './MapAPI.js'
 import Markers from './Markers.js'
 
 
+
 window.gm_authFailure = function() {
   alert('Oops, authentification filed. Check your Google Maps API key or try later!')
 };
@@ -20,9 +21,7 @@ class App extends React.Component {
     zoom: 12,
     locationsInfo: [],
     category: 'None',
-    filteredLocations: [],
-    gotLocations: false,
-    gotLocationsInfo: false
+    filteredLocations: []
   }
 
 
@@ -30,13 +29,12 @@ class App extends React.Component {
     // get initial locations when component mounts
     MapAPI.getAllLocations().then((locations) => {
       this.setState({
-        gotLocations: true,
         allLocations: locations,
         filteredLocations: locations
       })
     }).catch((error) => {
-      // alert the user if something goes wrong
-      console.log(error)
+      alert('Something went wrong shile fetching locations')
+      console.log('Something went wrong shile fetching locetions', error);
     });
 
 
@@ -98,14 +96,14 @@ class App extends React.Component {
 
   // selecting a location
   selectLocation = (location) => {
-      this.setState({selectedLocation: location});
-      this.setState({center: {lat: location.location.lat, lng: location.location.lng}});
-      this.setState({zoom: 15});
-      this.setState({showBox: true});
       this.getLocationInfo(location);
-
+      this.setState({
+        selectedLocation: location,
+        center: {lat: location.location.lat, lng: location.location.lng},
+        zoom: 15,
+        showBox: true
+      })
   }
-
 
 
   render() {
@@ -119,17 +117,16 @@ class App extends React.Component {
             <p className='api-info'>Built with Google Maps API and Foursquare API</p>
           </div>
         </header>
-        <LocationsMenu   gotLocations={this.state.gotLocations}
-                         resetMap={this.resetMap}
-                         filteredLocations={this.state.filteredLocations}
-                         handleCategoryFilter={this.handleCategoryFilter}
-                         filterLocations={this.filterLocations}
-                         changeCategory={this.changeCategory}
-                         category={this.state.category}
-                         allLocations={this.state.allLocations}
-                         selectLocation={this.selectLocation}/>
-        <Map   gotLocations={this.state.gotLocations}
-               filteredLocations={this.state.filteredLocations}
+        <LocationsMenu     resetMap={this.resetMap}
+                           filteredLocations={this.state.filteredLocations}
+                           handleCategoryFilter={this.handleCategoryFilter}
+                           filterLocations={this.filterLocations}
+                           changeCategory={this.changeCategory}
+                           category={this.state.category}
+                           allLocations={this.state.allLocations}
+                           selectLocation={this.selectLocation}/>
+
+        <Map   filteredLocations={this.state.filteredLocations}
                locationsInfo={this.state.locationsInfo}
                showBox={this.state.showBox}
                selectLocation={this.selectLocation}

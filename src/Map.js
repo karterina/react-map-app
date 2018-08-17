@@ -14,7 +14,7 @@ class Map extends Component {
         center = {this.props.center}
         zoom = {this.props.zoom}
       >
-        {this.props.gotLocations ?
+        {this.props.allLocations !== undefined ?
           this.props.filteredLocations.map(location => (
             location.id === this.props.selectedLocation.id ?
               <Markers locationsInfo={this.props.locationsInfo} selectedLocation={this.props.selectedLocation} selectLocation={this.props.selectLocation} animation={1} location={location} key={location.id} /> : <Markers locationsInfo={this.props.locationsInfo} selectedLocation={this.props.selectedLocation} selectLocation={this.props.selectLocation} animation={2} location={location} key={location.id} />

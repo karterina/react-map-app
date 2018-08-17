@@ -120,6 +120,10 @@ button.toggle-menu:hover {
 
 }
 
+.error {
+  color: red;
+}
+
 @media screen and (max-width: 650px)  {
   .app-name {
     font-size: 0.7em;
