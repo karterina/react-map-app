@@ -16,7 +16,7 @@ export const getAllLocations = () =>
     .then(res => res.json())
     .then(data => data.response.venues)
 
-// get information about a selected location 
+// get information about a selected location
 export const getLocationsInfo = (location) =>
   fetch(`https://api.foursquare.com/v2/venues/${location.id}?client_id=HVUUSG5G0A1A1551QOVRPZKR1AT4USRLBDC2KAYKSQW4GETT&client_secret=TFXX01L4PCO5PU3M4CXGPHQQSOL53A504121D0TH2URO0I1I&v=20180705`)
     .then(res => res.json())

@@ -10,10 +10,12 @@ It is a SPA built with React, displaying a Google Map with certain locations, a 
 3. Once all the dependencies are installed, start the server bu running npm start.
 4. A new browser window should open with the app. If it doesn't, go to http://localhost:3000/ using a browser of your choice.
 
+Note: The service worker for offline use works only in production build - to create production build run `npm run serve` and go to http://localhost:50/
+
 ## Tools
 
 This project was built with:
- 
+
 * create-react-app
 * react-google-maps
 

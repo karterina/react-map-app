@@ -6,6 +6,11 @@ import LocationsMenu from './LocationsMenu.js'
 import * as MapAPI from './MapAPI.js'
 import Markers from './Markers.js'
 
+
+window.gm_authFailure = function() {
+  alert('Oops, authentification filed. Check your Google Maps API key or try later!')
+};
+
 class App extends React.Component {
 
   state = {
@@ -15,28 +20,38 @@ class App extends React.Component {
     zoom: 12,
     locationsInfo: [],
     category: 'None',
-    filteredLocations: []
+    filteredLocations: [],
+    gotLocations: false,
+    gotLocationsInfo: false
   }
+
 
   componentDidMount() {
     // get initial locations when component mounts
     MapAPI.getAllLocations().then((locations) => {
-      this.setState({allLocations: locations});
-      this.setState({filteredLocations: locations})
+      this.setState({
+        gotLocations: true,
+        allLocations: locations,
+        filteredLocations: locations
+      })
     }).catch((error) => {
       // alert the user if something goes wrong
-      alert('Sorry, something went wrong while fetching locations. Try again later!');
-      console.log('Something went wrong while fetching locations', error);
+      console.log(error)
     });
+
+
   }
+
 
   // reset map to default when the reset button is pressed
   resetMap = () => {
-    this.setState({selectedLocation: []});
-    this.setState({center: {lat: 59.9342802, lng: 30.3350986}});
-    this.setState({zoom: 12});
-    this.setState({category: 'None'});
-    this.setState({filteredLocations: this.state.allLocations});
+    this.setState({
+      selectedLocation: [],
+      center: {lat: 59.9342802, lng: 30.3350986},
+      zoom: 12,
+      category: 'None',
+      filteredLocations: this.state.allLocations
+    });
   }
 
   // filter locations based on the chosen category
@@ -72,9 +87,11 @@ class App extends React.Component {
   // get information about a location using forsquare api
   getLocationInfo = (location) => {
     MapAPI.getLocationsInfo(location).then(info => {
-      this.setState({locationsInfo: info})
+      this.setState({
+        gotLocationsInfo: true,
+        locationsInfo: info
+      })
     }).catch(error => {
-      alert('Sorry, something went wrong while fetching locations information. Try again later!');
       console.log('Something went wrong while fetching locations information', error);
     })
   }
@@ -90,6 +107,7 @@ class App extends React.Component {
   }
 
 
+
   render() {
 
     return (
@@ -101,8 +119,25 @@ class App extends React.Component {
             <p className='api-info'>Built with Google Maps API and Foursquare API</p>
           </div>
         </header>
-        <LocationsMenu resetMap={this.resetMap} filteredLocations={this.state.filteredLocations} handleCategoryFilter={this.handleCategoryFilter} filterLocations={this.filterLocations} changeCategory={this.changeCategory} category={this.state.category} allLocations={this.state.allLocations} selectLocation={this.selectLocation}/>
-        <Map filteredLocations={this.state.filteredLocations} locationsInfo={this.state.locationsInfo} showBox={this.state.showBox} selectLocation={this.selectLocation} animation={this.state.markerAnimation} zoom={this.state.zoom} center={this.state.center} selectedLocation={this.state.selectedLocation} allLocations={this.state.allLocations} />
+        <LocationsMenu   gotLocations={this.state.gotLocations}
+                         resetMap={this.resetMap}
+                         filteredLocations={this.state.filteredLocations}
+                         handleCategoryFilter={this.handleCategoryFilter}
+                         filterLocations={this.filterLocations}
+                         changeCategory={this.changeCategory}
+                         category={this.state.category}
+                         allLocations={this.state.allLocations}
+                         selectLocation={this.selectLocation}/>
+        <Map   gotLocations={this.state.gotLocations}
+               filteredLocations={this.state.filteredLocations}
+               locationsInfo={this.state.locationsInfo}
+               showBox={this.state.showBox}
+               selectLocation={this.selectLocation}
+               animation={this.state.markerAnimation}
+               zoom={this.state.zoom}
+               center={this.state.center}
+               selectedLocation={this.state.selectedLocation}
+               allLocations={this.state.allLocations} />
       </div>
     );
   }

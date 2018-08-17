@@ -19,11 +19,11 @@ class LocationInfoBox extends Component {
            <div style={{ fontSize: `16px`, fontColor: `black` }}>
              <span className='info-name info-header'>Name:</span> {this.props.location.name}
              <hr/>
-             <span className='info-address info-header'>Address:</span> {this.props.location.location.address ? this.props.location.location.address : 'not available' }
+             <span className='info-address info-header'>Address:</span> {this.props.location.location.address ? this.props.location.location.address : 'not available' }}
              <hr/>
              <span className='info-phone info-header'>Phone number:</span> {this.props.locationsInfo.contact && this.props.locationsInfo.contact.formattedPhone ? this.props.locationsInfo.contact.formattedPhone : 'not available'}
              <hr/>
-             <span className='info-website info-header'>Website:</span> {this.props.locationsInfo.url ? <a target='_blank' href={this.props.locationsInfo.url}>{this.props.location.name}</a> : 'not available'}
+             <span className='info-website info-header'>Website:</span> {this.props.locationsInfo.url ? <a target='_blank' href={this.props.locationsInfo.url}>{this.props.location.name}</a> : 'not available'}}
            </div>
          </div>
        </InfoBox>
