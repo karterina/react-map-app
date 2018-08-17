@@ -29,6 +29,7 @@ class Map extends Component {
 
       <div>
         <TheMap
+          aria-role='application'
           containerElement={<div className='map-container' style={{height:'90vh', width:'100%'}} />}
           mapElement={ <div style={{height:'100%'}} />}>
         </TheMap>

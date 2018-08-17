@@ -90,6 +90,7 @@ class App extends React.Component {
         locationsInfo: info
       })
     }).catch(error => {
+      alert('Something went wrong while fetching locations information');
       console.log('Something went wrong while fetching locations information', error);
     })
   }
@@ -141,7 +142,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-{/*https://maps.googleapis.com/maps/api/geocode/json?address=Saint-Petersburg,Russia&language=en&key=AIzaSyB6umOQ7xBfICOqPv88utt0TyVtZcHAN3Q */}
-
-{/*https://api.foursquare.com/v2/venues/search?ll=59.9342802,30.3350986&intent=browse&radius=10000&query=museum&limit=10&client_id=HVUUSG5G0A1A1551QOVRPZKR1AT4USRLBDC2KAYKSQW4GETT&client_secret=TFXX01L4PCO5PU3M4CXGPHQQSOL53A504121D0TH2URO0I1I&v=20180705*/}
