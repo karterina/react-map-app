@@ -1,0 +1,132 @@
+body, .root, .App {
+  width: 100%;
+  height: 100%;
+}
+
+
+.App {
+  text-align: center;
+  background-color: #222;
+}
+
+.App-header {
+  background-color: #222;
+  height: 7vh;
+  color: white;
+  padding: 10px;
+  padding-right: 0;
+  margin: auto;
+  font-size: 1.5em;
+  min-height: 48.5px;
+}
+
+.App-header p {
+  display: block;
+  margin: 5px;
+}
+
+.header-info {
+  height: 100%;
+}
+.api-info {
+  font-size: 10pt;
+  color: dimgray;
+}
+
+nav {
+  height: 100%;
+}
+
+.locationsMenu {
+  float: left;
+  width: 300px;
+  height: 90vh;
+  background-color: #222;
+  position: absolute;
+  transform: translate(-300px, 0);
+  transition: transform 0.3s ease;
+  overflow-y: scroll;
+}
+
+
+.locationsMenu.show {
+  position: relative;
+  transform: translate(0, 0);
+}
+
+
+
+select {
+  width: 90%;
+  height: 40px;
+  margin-top: 5px;
+}
+
+#select-label {
+  display: block;
+  color: white;
+}
+
+#reset-button {
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+.locationsContainer ul {
+  list-style: none;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 5px;
+
+
+}
+
+
+.locationsContainer li {
+  display: block;
+  color: white;
+  padding: 15px;
+}
+
+.locationsContainer li:hover {
+  cursor: pointer;
+  background-color: dimgray;
+}
+
+.locationsContainer li:focus {
+  background-color: dimgray;
+}
+
+
+button.toggle-menu {
+  border: none;
+  background-color: #222;
+  color: white;
+  float:left;
+  width: 50px;
+  height: 40px;
+  font-size: 1em;
+}
+
+button.toggle-menu:hover {
+  cursor: pointer;
+  background-color: dimgray;
+}
+
+.info-header {
+  font-weight: bold;
+
+}
+
+.error {
+  color: red;
+}
+
+@media screen and (max-width: 650px)  {
+  .app-name {
+    font-size: 0.7em;
+  }
+
+}
